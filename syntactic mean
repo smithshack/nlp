@@ -1,0 +1,13 @@
+#syntantic parsing 
+
+import nltk 
+nltk.download('averaged_perceptron_tagger')
+from nltk import pos_tag,word_tokenize,RegexpParser
+sentence="Reliance Retail acquires majority stake in designer brand Abraham & Thomson"
+tokens=word_tokenize(sentence)
+tags=pos_tag(tokens) 
+grammer="NP:{<NN>?<DT>*<NN>}"
+chunker=RegexpParser(grammer) 
+result=chunker.parse(tags) 
+print(result)
+result.draw()
