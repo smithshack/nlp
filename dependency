@@ -1,0 +1,12 @@
+#spacy download en_core_web_sm (install on cmd) 
+import spacy
+from spacy import displacy
+nlp = spacy.load("en_core_web_sm")
+sentence = 'Deemed universitiies charge huge fees'
+doc=nlp(sentence) 
+print("{:<15}|{:<8}|{:<15}|{:<20}".format('Token','Relation','Head','Children'))
+print('-'*70)
+for token in doc: 
+    print("{:15}|{:<8}|{:<15}|{:<20}".format(str(token.text),str(token.dep_),str(token.head.text),str([child for child in token.children])))
+# Use displacy to visualize the dependency 
+displacy.serve(doc,style='dep',options={'distance':120})
