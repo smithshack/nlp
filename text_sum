@@ -1,0 +1,44 @@
+#text summarization
+
+from nltk.tokenize import word_tokenize,sent_tokenize
+from nltk.corpus import stopwords
+
+
+f = open("C:/Users/Sneha/Desktop/Sneha2.0/s2.txt") 
+text = f.read()
+
+
+words = word_tokenize(text) 
+sents = sent_tokenize(text)
+stopwords = set(stopwords.words('english'))
+
+
+
+freqTable = dict() 
+for word in words:
+    word = word.lower() 
+    if word in stopwords:
+          continue
+    elif word in freqTable: 
+          freqTable[word]+=1
+    else:
+          freqTable[word]=1
+
+
+sentValue = dict() 
+for sent in sents:
+    for word,freq in freqTable.items(): 
+        if word in sent.lower():
+            if sent in sentValue: sentValue[sent]+=freq
+            else:
+                sentValue[sent]=freq
+sumValues = 0 
+for s in sentValue:
+    sumValues+=sentValue[s]
+    avg = int(sumValues/len(sents))
+    summary = ''
+
+for sent in sents:
+     if (sent in sentValue) and (sentValue[sent]>1.2*avg): 
+        summary+=''+sent
+        print(summary)
