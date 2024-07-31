@@ -1,0 +1,10 @@
+#pip intall nltk
+#py -m pip install --upgrade pip 
+#nltk.download('punkt') #nltk.download('wordnet')
+from nltk.tokenize import word_tokenize 
+text="God is Great! I won a lottery." 
+print("The words are",word_tokenize(text))
+
+from nltk.tokenize import sent_tokenize 
+text="God is Great! I won a lottery."
+print("The sentences are",sent_tokenize(text))
