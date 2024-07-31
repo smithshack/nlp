@@ -1,0 +1,25 @@
+# tri gram model 
+
+
+import nltk 
+nltk.download('punkt')
+from nltk.tokenize import word_tokenize 
+from nltk import FreqDist
+import pandas as pd
+f = open("C:/Users/Sneha/Desktop/Sneha2.0/s1.txt") 
+sample = f.read()
+sample_tokens = nltk.word_tokenize(sample) 
+print('\n Sample Tokens:',sample_tokens)
+print('\n Type of Sample Tokens:',type(sample_tokens)) 
+print('\n Length of Sample Tokens:',len(sample_tokens))
+sample_freq =FreqDist(sample_tokens) 
+tokens=[]
+sf=[]
+for i in sample_freq:
+    tokens.append(i) 
+    sf.append(sample_freq[i])
+df = pd.DataFrame({'Tokens':tokens,'Frequency':sf}) 
+print('\n',df)
+print('\n Bigrams:',list(nltk.bigrams(sample_tokens))) 
+print('\n Trigrams:',list(nltk.trigrams(sample_tokens))) 
+print('\n N-grams(4):',list(nltk.ngrams(sample_tokens,4)))
